@@ -3,7 +3,7 @@ package me.ghui.gradledemo;
 /**
  * Created by vann on 12/20/14.
  */
-public interface ImgUrlContants {
+interface ImgUrlContants {
     String img1 = "http://www.hxhmu.com/img/aHR0cDovL2ltZy5rZWppeHVuLmNvbS8yMDEzLzEyMTcvMjAxMzEyMTcwMzI1MDcyNjUuanBn.jpg";
     String img2 = "http://photocdn.sohu.com/20120229/Img336274372.jpg";
     String img3 = "http://img.kejixun.com/2013/0715/20130715024445131.jpg";

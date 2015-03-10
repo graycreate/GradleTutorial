@@ -4,6 +4,14 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
     defaultConfig {
         applicationId "me.ghui.gradledemo"
         minSdkVersion 15
@@ -12,55 +20,26 @@ android {
         versionName "1.0"
     }
 
-    signingConfigs {
-        release {
-            //only for test,in practice shouldn't do like this,detail:
-            //http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle
-            storeFile file("demo.keystore")
-            storePassword "letvletv"
-            keyAlias "letv"
-            keyPassword "letvletv"
-        }
-    }
-
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            zipAlignEnabled false
         }
     }
-
     productFlavors {
-//        letvstore {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
-//        }
-//        wandoujia {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
-//        }
-//        baidu {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "c360"]
-//        }
-//        //or do like below
-//        c91.manifestPlaceholders = [UMENG_CHANNEL_VALUE: "c91"]
-
-        letvstore {}
-        wandoujia {}
-        baidu {}
-        c91 {}
-        productFlavors.all { flavor ->
-            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-            flavor.signingConfig = signingConfigs.release
+        pay {
+            applicationId "me.ghui.gradledemo.pay"
         }
+        free {}
     }
-
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.2'
-    compile 'com.jpardogo.flabbylistview:library:+'
     compile 'com.jpardogo.googleprogressbar:library:+'
     compile 'com.mcxiaoke.volley:library:1.0.+'
-    compile 'com.jakewharton:butterknife:6.0.0'
-    compile 'com.umeng.analytics:analytics:5.2.4'
+    compile 'com.jakewharton:butterknife:6.1.0'
 }

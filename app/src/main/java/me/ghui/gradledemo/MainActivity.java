@@ -2,7 +2,7 @@ package me.ghui.gradledemo;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import com.jpardogo.android.flabbylistview.lib.FlabbyListView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends ActionBarActivity {
     private static final int NUM_LIST_ITEM = 10;
-    FlabbyListView mListview;
+    ListView mListview;
     ListAdapter mAdapter;
 
     @Override
@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
 
     private void init() {
         mAdapter = new ListAdapter(this, getListItems());
-        mListview = (FlabbyListView) findViewById(R.id.listview);
+        mListview = (ListView) findViewById(R.id.listview);
         mListview.setAdapter(mAdapter);
     }
 
